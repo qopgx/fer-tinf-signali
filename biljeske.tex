@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{TINF Signali bilješke}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\subsection*{Dirac delta izvodi}
+\subsection*{$e \longrightarrow sinc$}
+$$
+	\int_{T}^{-T}e^{i(\omega-\omega')t}dt=\frac{e^{i(\omega-\omega')t} - e^{-i(\omega-\omega')t}}{i(\omega-\omega')}=\frac{2Tsin((\omega-\omega')T)}{(\omega-\omega')T}
+$$
+Sada za $T \longrightarrow \infty$ se ponaša kao:
+\begin{itemize}
+	\item $\omega \neq \omega'$: oscilira zauvijek, kada se koristi unutar integrala (isto kao $\delta$) ta površina nestaje.
+	\item $\omega = \omega'$: sve osim $2T$ postaje 1, tkd. $2T \longrightarrow \infty$, no opet, unutar nekog drugog integrala površina $\longrightarrow 1$
+\end{itemize}
+Pa je time:
+$$
+	\int_{T}^{-T}e^{i\omega t}*e^{-i\omega't}dt=2\pi\delta(\omega-\omega')
+$$
+\subsection*{Dirac comb funkcija}
+Dirac comb funkcija ovdje označena s S:
+$$
+	S_{T_0}(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT)
+$$
+Fourier koeficijenti periodične $S$ funkcije, pretpostavka da je linearnost očuvana:
+\begin{align*}
+	c_k = \frac{1}{T_0}\int_{-T_0/2}^{T_0/2}S_{T_0}(t)e^{-jk\omega_0t}dt=                             \\
+	\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}(\sum_{n=-\infty}^{\infty}\delta(t-nT_0))e^{-jk\omega_0t}dt=    \\
+	\frac{1}{T_0}\sum_{n=-\infty}^{\infty}(\int_{-T_0/2}^{T_0/2}e^{-jk\omega_0t}\delta(t-nT_0))dt=... \\
+\end{align*}
+Sad $\delta(t-nT_0)=0, \forall n > 0$:
+\begin{align*}
+	...=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2}e^{-jk\omega_0t}\delta(t)dt= \\
+	\frac{1}{T_0}e^{-jk\omega_0*0}=\frac{1}{T_0}                       \\
+\end{align*}
+Sad fourierov par:
+$$
+	S(t) \longleftrightarrow f_0\sum_{k=-\infty}^{\infty}\delta(f-kf_0)=f_0*S_{f_0}(f)
+$$
+Tj.:
+$$
+	x(t)*S_{T_0}(t) \longleftrightarrow X(f)*f_0*S_{f_0}(f)
+$$
+\end{document}
