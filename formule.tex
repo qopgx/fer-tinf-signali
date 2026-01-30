@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\title{TINF Dodatne formule}
+\date{}
+\begin{document}
+\maketitle
+\subsection*{Periodični signali}
+Snaga:
+$$
+	P=\lim_{k\rightarrow\infty}[\frac{1}{kT_0}k\int_{0}^{T_0}\lvert x(t)\rvert^2dt]=\frac{1}{T_0}\int_{0}^{T_0}\lvert x(t)\rvert^2dt=\sum_{k=-\infty}^{\infty}\lvert c_k\rvert^2=A^2\frac{\tau}{T}
+$$
+Fourier parovi:
+$$
+	x(t)=sin(\omega_0 t)\longleftrightarrow -j\frac{A}{2}[\delta(f-f_0) - \delta(f+f_0)]=X(f)
+$$
+$$
+	x(t)=cos(\omega_0 t) \longleftrightarrow \frac{A}{2}[\delta(f-f_0) + \delta(f+f_0)]
+$$
+\subsection*{Slučajni signali}
+
+\subsubsection*{Bijeli šum}
+$W(t)$ bijeli šum ako:
+\begin{itemize}
+	\item $R_W(\tau) = C_1*\delta(\tau)$
+	\item $C_W(\tau) = C_2*\delta(\tau)$
+\end{itemize}
+Svojstva:
+\begin{itemize}
+	\item $\mu_W=0$
+	\item $R_W(\tau) = \sigma^2\delta(\tau)$
+	\item $S_W(f) = \sigma^2\int_{-\infty}^{\infty}\delta(t)\exp^{-j2\pi ft}dt=\sigma^2$
+\end{itemize}
+Gaussova razdioba:
+$$
+	f_x(x)=\frac{1}{\sigma_X\sqrt{2\pi}}\exp^{-(x-\mu_X)^2 / (2\sigma_X^2)}
+$$
+\subsection*{Prijenos}
+Prijenosna funkcija:
+$$
+	H(f)=\int_{-\infty}^{\infty}h(t)\exp^{-j2\pi ft}dt
+$$
+Amplitudni odziv RC:
+$$
+	20\log\frac{\lvert H(f) \rvert}{\lvert H(0) \rvert}=20\log(\lvert H(f) \rvert)
+$$
+\[
+	\lvert H(f)\rvert=
+	\begin{cases}
+		1, \quad \text{za } \lvert f\rvert \le f_g \\
+		0, \quad \text{za } \lvert f\rvert \ge f_g
+	\end{cases}
+\]
+Impulsni odziv i prijenosna funkcija
+$$
+	y(t)=\int_{-\infty}^{\infty}x(\tau)h(t-\tau)d\tau=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)
+$$
+$$
+	y(t)=x(t)*h(t)
+$$
+$$
+	Y(f)=X(f)*H(f)
+$$
+Amplitudni odziv je parna funkcija frekvencije, a fazni odziv neparna:
+$$
+	\lvert H(-f)\rvert=\lvert H(f)\rvert
+$$
+$$
+	\theta(-f)=-\theta(f)
+$$
+Ako je $X(t)$ stacionarni slučajni proces...
+$$
+	\mu_Y=\mu_X H(0)
+$$
+$$
+	S_Y (f)=S_X (f)\lvert H(f)\rvert^2
+$$
+Ako na ulazu kanala dovedemo signal $x(t)$ čiji je spektar $X(f)$ definiran kao $X(f)=\lvert X(f)\rvert\exp^{j\varphi(f)}$, onda $Y(f)$ zadovoljava:
+$$
+	Y(f)=\lvert Y(f)\rvert\exp^{j\vartheta(f)}
+$$
+$$
+	\lvert Y(F)\rvert=\lvert X(f)\rvert\lvert H(f)\rvert
+$$
+$$
+	\vartheta(f)=\varphi(f)-\theta(f)
+$$
+Amplitudni odziv RC:
+$$
+	\lvert H(f)\rvert=\lvert\frac{U_\text{izlaz}(f)}{U_\text{ulaz}(f)}\rvert=\frac{1}{\sqrt{1+(2\pi fRC)^2}}
+$$
+\subsection*{ Konverzije}
+
+U decibel (dB):
+$$
+	x\rightarrow10\log_{10}(x)
+$$
+\subsection*{Jedinice}
+$$
+	c_k \leftrightarrow [\frac{V}{Hz}]
+$$
+$$
+	S_X(f) \leftrightarrow [\frac{W}{Hz}]
+$$
+\end{document}
