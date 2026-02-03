@@ -1,7 +1,9 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \title{TINF Signali formule}
+\author{}
 \date{}
 \begin{document}
 \maketitle
@@ -21,8 +23,43 @@ $$
 $$
 	x(t)=cos(\omega_0 t) \longleftrightarrow \frac{A}{2}[\delta(f-f_0) + \delta(f+f_0)]
 $$
+\subsection*{Neperiodični signali}
+$\lvert X(f)\rvert$ je amplitudni spektar, $\theta(f)$ je fazni.
+$$
+	X(f)=\lvert X(f)\rvert e^{j\theta(f)}
+$$
+\subsubsection*{Parsevalov teorem}
+$$
+	E=\int_{-\infty}^{\infty}\lvert x(t)\rvert^2dt=\int_{-\infty}^{\infty}\lvert X(f)\rvert^2 df = \frac{1}{2\pi}\int_{-\infty}^{\infty}\lvert X(\omega)\rvert^2d\omega
+$$
+\subsubsection*{Pravokutni impuls}
+$$
+	P=0\quad\text{(beskonačnost)}, \quad E=A^2\tau
+$$
+\newpage
 \subsection*{Slučajni signali}
 
+\subsubsection*{Pravila E}
+\begin{itemize}
+	\item $E[c]=c,\quad c\in\mathbb{R}$
+	\item $E[cX]=cE[X]$
+	\item $E[X+Y]=E[X]+E[Y]$
+	\item $E[XY]=E[X]E[Y]$
+\end{itemize}
+\subsubsection*{Stacionarnost}
+Uvjeti
+\begin{itemize}
+\item $E[X(t)]=\mu_x$
+\item $\forall t_1,t_2,\quad R_x(t_1,t_2)=R_x(t_1,t_1+\tau)$
+\subitem Pri tome: $R_x$ parna, $\lvert R_x \rvert \geq R_x(0) \geq 0$
+\end {itemize}
+Srednja snaga
+$$
+	P=E[X^2(t)]=R_X(0)=\int_{-\infty}^{\infty}S_X(f)df
+$$
+$$
+	E[X]=0 \rightarrow P=var(X)=\sigma_X^2
+$$
 \subsubsection*{Bijeli šum}
 $W(t)$ bijeli šum ako:
 \begin{itemize}
@@ -32,17 +69,21 @@ $W(t)$ bijeli šum ako:
 Svojstva:
 \begin{itemize}
 	\item $\mu_W=0$
-	\item $R_W(\tau) = \sigma^2\delta(\tau)$
-	\item $S_W(f) = \sigma^2\int_{-\infty}^{\infty}\delta(t)\exp^{-j2\pi ft}dt=\sigma^2$
+	\item $R_W(\tau)=\sigma^2\delta(\tau)=N_0/2$
+	\item $S_W(f) = \sigma^2\int_{-\infty}^{\infty}\delta(t)e^{-j2\pi ft}dt=\sigma^2=N_0/2$
 \end{itemize}
 Gaussova razdioba:
 $$
-	f_x(x)=\frac{1}{\sigma_X\sqrt{2\pi}}\exp^{-(x-\mu_X)^2 / (2\sigma_X^2)}
+	f_x(x)=\frac{1}{\sigma_X\sqrt{2\pi}}e^{-(x-\mu_X)^2 / (2\sigma_X^2)}
 $$
 \subsection*{Prijenos}
+Izlazni signal:
+$$
+	y(t)=\int_{-\infty}^{\infty}x(\tau)h(t-\tau)d\tau=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)d\tau
+$$
 Prijenosna funkcija:
 $$
-	H(f)=\int_{-\infty}^{\infty}h(t)\exp^{-j2\pi ft}dt
+	H(f)=\int_{-\infty}^{\infty}h(t)e^{-j2\pi ft}dt
 $$
 Amplitudni odziv RC:
 $$
@@ -79,9 +120,9 @@ $$
 $$
 	S_Y (f)=S_X (f)\lvert H(f)\rvert^2
 $$
-Ako na ulazu kanala dovedemo signal $x(t)$ čiji je spektar $X(f)$ definiran kao $X(f)=\lvert X(f)\rvert\exp^{j\varphi(f)}$, onda $Y(f)$ zadovoljava:
+Ako na ulazu kanala dovedemo signal $x(t)$ čiji je spektar $X(f)$ definiran kao $X(f)=\lvert X(f)\rvert e^{j\varphi(f)}$, onda $Y(f)$ zadovoljava:
 $$
-	Y(f)=\lvert Y(f)\rvert\exp^{j\vartheta(f)}
+	Y(f)=\lvert Y(f)\rvert e^{j\vartheta(f)}
 $$
 $$
 	\lvert Y(F)\rvert=\lvert X(f)\rvert\lvert H(f)\rvert
@@ -93,7 +134,26 @@ Amplitudni odziv RC:
 $$
 	\lvert H(f)\rvert=\lvert\frac{U_\text{izlaz}(f)}{U_\text{ulaz}(f)}\rvert=\frac{1}{\sqrt{1+(2\pi fRC)^2}}
 $$
-\subsection*{ Konverzije}
+\subsection*{Uzorkovanje}
+Frekvencija uzorkovanja u pomaknutom pojasu:
+$$
+	f_u=2*\frac{B+B_0}{M+1},\quad M_m=\lfloor\frac{B_0}{B}+1 \rfloor
+$$
+Varijanca kvantizacijskog šuma tj. srednja snaga kvantizacijskog šuma:
+$$
+	var(Q)=\sigma_Q^2=\frac{\Delta^2}{12}=\frac{1}{3}m_{max}^2 2^{-2r},\quad \Delta=\frac{2m_{max}}{L}
+$$
+Omjer srednja snaga signala i snaga kvantizacijskog šuma:
+$$
+	\frac{S}{N}=\frac{S}{\sigma_Q^2}=(\frac{3S}{m_{max}^2})2^{2r}
+$$
+
+\subsubsection*{Maximizacija entropije}
+\begin{itemize}
+	\item $x\in [a,b]\rightarrow f_1(x)=\frac{1}{b-a},\quad H(X)=ln(b-a) [\frac{\text{nat}}{\text{symb}}]$
+	\item $x\ge 0\land E[X]=a,a\le 0\rightarrow f_1(x)=\frac{1}{a}e^{-\frac{x}{a}},\quad H(X)=ln(ae)=1+ln(a)$
+\end{itemize}
+\subsection*{Konverzije}
 
 U decibel (dB):
 $$
