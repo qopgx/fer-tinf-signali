@@ -1,8 +1,12 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
-\title{TINF Signali formule}
+\usepackage{xcolor}
+% Title formatting
+\usepackage{titling}
+\setlength{\droptitle}{-7em}
+\posttitle{\end{center}\vspace{-5em}}
+\title{TINF Signali formule\linebreak \linebreak\normalsize \textcolor{red}{OVE FORMULE NE SADRŽAVAJU POSTUPKE RJEŠAVANJA ZADATAKA, BROJČANE REZULTATE NITI NAPUTKE ZA RJEŠAVANJE. ISKLJUČIVO SADRŽE ZNANJE IZ KNJIGE I ZBIRKE.}}
 \author{}
 \date{}
 \begin{document}
@@ -12,9 +16,14 @@ Snaga:
 $$
 	P=\lim_{k\rightarrow\infty}[\frac{1}{kT_0}k\int_{0}^{T_0}\lvert x(t)\rvert^2dt]=\frac{1}{T_0}\int_{0}^{T_0}\lvert x(t)\rvert^2dt=\sum_{k=-\infty}^{\infty}\lvert c_k\rvert^2=...
 $$
+
+Sinusni:
+$$
+	P = \frac{A^2}{2}
+$$
 Još za slijed pravokutnih:
 $$
-	...=A^2\frac{\tau}{T}
+	P=A^2\frac{\tau}{T}
 $$
 Fourier parovi:
 $$
@@ -36,7 +45,6 @@ $$
 $$
 	P=0\quad\text{(beskonačnost)}, \quad E=A^2\tau
 $$
-\newpage
 \subsection*{Slučajni signali}
 
 \subsubsection*{Pravila E}
@@ -134,7 +142,7 @@ Amplitudni odziv RC:
 $$
 	\lvert H(f)\rvert=\lvert\frac{U_\text{izlaz}(f)}{U_\text{ulaz}(f)}\rvert=\frac{1}{\sqrt{1+(2\pi fRC)^2}}
 $$
-\subsection*{Uzorkovanje}
+\subsection*{Uzorkovanje i kvantizacija}
 Frekvencija uzorkovanja u pomaknutom pojasu:
 $$
 	f_u=2*\frac{B+B_0}{M+1},\quad M_m=\lfloor\frac{B_0}{B}+1 \rfloor
@@ -147,12 +155,59 @@ Omjer srednja snaga signala i snaga kvantizacijskog šuma:
 $$
 	\frac{S}{N}=\frac{S}{\sigma_Q^2}=(\frac{3S}{m_{max}^2})2^{2r}
 $$
-
-\subsubsection*{Maximizacija entropije}
+U decibelima, samo za sinusni:
+$$
+	(\frac{S}{N_q})_{dB}=1.76+6.02*r
+$$
+Brzina prijenosa:
+$$
+	R=f_u*r
+$$
+\subsubsection*{Entropija u K.K.}
+$f$ su funkcije gustoće vjerojatnosti.
+$$
+	H(X)=E[-log(f_X(X))]=-\int_{-\infty}^{\infty}f_X(x)log(f_X(x))dx
+$$
+$$
+	f_X(x)=\int_{-\infty}^{\infty}f(x,y)dy
+$$
+$$
+	f_Y(x)=\int_{-\infty}^{\infty}f(x,y)dx
+$$
+$$
+	H(X|Y)=E[-log(f_Y(X|Y))]=-\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)log(\frac{f(x,y)}{f_Y(y)})dxdy
+$$
+$$
+	H(X,Y)=E[-log(f(X,Y))]=-\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)log(f(x,y))dxdy
+$$
+$$
+	I(X;Y)=E[-log(f_Y(X|Y))]=-\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)log(\frac{f(x,y)}{f_X(x)f_Y(y)})dxdy
+$$
+Prijenos u prisutstvu aditivnog šuma
+$$
+	f_x(y|x)=f_x(z+x|x)=f_z(z)
+$$
+$$
+	I(X;Y)=H(Y)-H(Y|X)=H(Y)-H(Z)
+$$
+Kapacitet:
+$$
+	C=\textnormal{max }I(X;Y)=\textnormal{max }[\quad ln[\sqrt{2\pi e(\sigma_x^2+\sigma_y^2)}]\quad -\quad \frac{1}{2}ln(2\pi e\sigma_z^2) \quad]=...
+$$
+$$
+	...=\frac{1}{2}ln(\frac{\sigma_x^2+\sigma_y^2}{\sigma_z^2})=\frac{1}{2}ln(1+\frac{S}{N})
+$$
+\subsubsection*{Maximizacija entropije u K.K.}
 \begin{itemize}
 	\item $x\in [a,b]\rightarrow f_1(x)=\frac{1}{b-a},\quad H(X)=ln(b-a) [\frac{\text{nat}}{\text{symb}}]$
 	\item $x\ge 0\land E[X]=a,a\le 0\rightarrow f_1(x)=\frac{1}{a}e^{-\frac{x}{a}},\quad H(X)=ln(ae)=1+ln(a)$
+	\item $E[X]=0\land\exists\sigma_X\rightarrow f\textnormal{ gauss},\quad H(X)=ln(\sigma_X\sqrt{2\pi e})$
 \end{itemize}
+\subsection*{Ostalo}
+Srednja kvadratna pogreška, $u_{qi}$ kvantizacijske razine.
+$$
+	N_q^2=\sum_{u_{qi}}\int_{u_{qi} - \Delta/2}^{u_{qi} + \Delta/2}(u-u_{qi})^2f(u)du\quad[V^2]
+$$
 \subsection*{Konverzije}
 
 U decibel (dB):
