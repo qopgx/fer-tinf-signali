@@ -223,9 +223,10 @@
 		f_Y(y) = \int_{-\infty}^{\infty} f(x,y) \, dx
 	\]
 
-	\[
-		H(X|Y) = E[-\log f_{X|Y}(X|Y)] = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_Y(y)} \right) \, dx \, dy
-	\]
+	\begin{align*}
+		H(X|Y) = E[-\log f_{X|Y}(X|Y)] = \\
+		-\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_Y(y)} \right) \, dx \, dy
+	\end{align*}
 
 	\[
 		H(X,Y) = E[-\log f(X,Y)] = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log f(x,y) \, dx \, dy
@@ -279,7 +280,6 @@
 	\[
 		c_k \leftrightarrow \left[ \frac{V}{Hz} \right]
 	\]
-
 	\[
 		S_X(f) \leftrightarrow \left[ \frac{W}{Hz} \right]
 	\]
