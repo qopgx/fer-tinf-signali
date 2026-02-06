@@ -224,18 +224,17 @@
 	\]
 
 	\begin{align*}
-		H(X|Y) = E[-\log f_{X|Y}(X|Y)] = \\
-		-\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_Y(y)} \right) \, dx \, dy
+		H(X|Y) & = E[-\log f_{X|Y}(X|Y)]                                                                                         \\
+		       & = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_Y(y)} \right) \, dx \, dy
 	\end{align*}
-
-	\[
-		H(X,Y) = E[-\log f(X,Y)] = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log f(x,y) \, dx \, dy
-	\]
-
-	\[
-		I(X;Y) = E[-\log f_{Y|X}(Y|X)] = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_X(x) f_Y(y)} \right) \, dx \, dy
-	\]
-
+	\begin{align*}
+		H(X,Y) & = E[-\log f(X,Y)]                                                                 \\
+		       & = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log f(x,y) \, dx \, dy
+	\end{align*}
+	\begin{align*}
+		I(X;Y) & = E[-\log f_{Y|X}(Y|X)]                                                                                                \\
+		       & = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_X(x) f_Y(y)} \right) \, dx \, dy
+	\end{align*}
 	Prijenos u prisutnosti aditivnog šuma:
 	\[
 		f_{Y|X}(y|x) = f_{Z}(y - x)
