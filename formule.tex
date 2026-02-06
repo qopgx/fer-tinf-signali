@@ -17,11 +17,20 @@
 \author{}
 \date{}
 
+\newcommand{\infintegral}{\int_{-\infty}^{\infty}}
+
 \begin{document}
 \maketitle
 \begin{multicols}{2}
+	\[
+		E=I(Ri^2(t))=I(\frac{u^2(t)}{R}), \quad P=\lim_{T\to\infty}\frac{1}{T}\int_{-T_0/2}^{T_0/2}Ri^2(t)dt
+	\]
 
 	\section*{Periodični signali}
+	Fourierov razvoj:
+	\[
+		x(t)=\sum_{k=-\infty}^{\infty}c_ke^{jk\omega_0t}, \text{ gdje } c_k = \frac{1}{T}\int_{-T_0/2}^{T_0/2}x(t)e^{-jk\omega_0t}dt
+	\]
 
 	\subsection*{Snaga}
 	\begin{align*}
@@ -50,6 +59,10 @@
 	\]
 
 	\section*{Neperiodični signali}
+	Spektar
+	\[
+		X(f)=\infintegral x(t)e^{-j2\pi ft}dt, \quad x(t)=\infintegral X(f)e^{j2\pi ft}df
+	\]
 
 	$X(f) = |X(f)| e^{j \theta(f)}$, gdje je $|X(f)|$ amplitudni spektar, a $\theta(f)$ fazni spektar.
 
@@ -64,14 +77,26 @@
 	\]
 
 	\section*{Slučajni signali}
+	Srednja vrijednost
+	\[
+		\mu_X(t)=E\left[X(t)\right]=\infintegral xf_X(x,t)dx
+	\]
+	Autokorelacijska funkcija
+	\[
+		R_X(t_1,t_2)=E\left[X(t_1)X(t_2)\right]
+	\]
+	Autokovarijanca
+	\begin{align*}
+		C_X(t_1,t_2)=E\left\{\left[X(t_1) - \mu_x(t_1)\right]\left[X(t_2) - \mu_x(t_2)\right]\right\}
+	\end{align*}
 
 	\subsection*{Pravila očekivanja (E)}
-	\begin{itemize}
-		\item $E[c] = c$, $\quad c \in \mathbb{R}$
-		\item $E[cX] = c E[X]$
-		\item $E[X + Y] = E[X] + E[Y]$
-		\item $E[XY] = E[X] E[Y]$
-	\end{itemize}
+	\[
+		E[c] = c, \quad c \in \mathbb{R}, \quad E[cX] = c E[X]
+	\]
+	\[
+		E[X + Y] = E[X] + E[Y], \quad E[XY] = E[X] E[Y]
+	\]
 
 	\subsection*{Stacionarnost}
 	Uvjeti:
@@ -85,18 +110,14 @@
 	\[
 		P = E[X^2(t)] = R_X(0) = \int_{-\infty}^{\infty} S_X(f) \, df
 	\]
-
-	Ako $E[X] = 0$:
 	\[
-		P = \operatorname{var}(X) = \sigma_X^2
+		E[X]=0 \longrightarrow P = \operatorname{var}(X) = \sigma_X^2
 	\]
-
 	\subsection*{Bijeli šum}
 	$W(t)$ je bijeli šum ako:
-	\begin{itemize}
-		\item $R_W(\tau) = C_1 \delta(\tau)$
-		\item $C_W(\tau) = C_2 \delta(\tau)$
-	\end{itemize}
+	\[
+		R_W(\tau) = C_1 \delta(\tau) \quad\land\quad C_W(\tau) = C_2 \delta(\tau)
+	\]
 
 	Svojstva:
 	\begin{itemize}
@@ -109,7 +130,6 @@
 	\[
 		f_x(x) = \frac{1}{\sigma_X \sqrt{2\pi}} e^{-(x - \mu_X)^2 / (2 \sigma_X^2)}
 	\]
-
 	\section*{Prijenos}
 
 	Izlazni signal:
@@ -138,40 +158,23 @@
 
 	Impulsni odziv i prijenosna funkcija:
 	\[
-		y(t) = x(t) * h(t)
-	\]
-
-	\[
-		Y(f) = X(f) H(f)
+		y(t) = x(t) * h(t), \quad Y(f) = X(f) H(f)
 	\]
 
 	Amplitudni odziv je parna funkcija, a fazni neparna:
 	\[
-		|H(-f)| = |H(f)|
-	\]
-
-	\[
-		\theta(-f) = -\theta(f)
+		|H(-f)| = |H(f)|, \quad \theta(-f) = -\theta(f)
 	\]
 
 	Ako je $X(t)$ stacionarni slučajni proces:
 	\[
-		\mu_Y = \mu_X H(0)
-	\]
-
-	\[
-		S_Y(f) = S_X(f) |H(f)|^2
+		\mu_Y = \mu_X H(0), \quad S_Y(f) = S_X(f) |H(f)|^2
 	\]
 
 	Ako je ulaz $x(t)$ sa spektrom $X(f) = |X(f)| e^{j \varphi(f)}$:
 	\[
-		Y(f) = |Y(f)| e^{j \vartheta(f)}
+		Y(f) = |Y(f)| e^{j \vartheta(f)}, \quad |Y(f)| = |X(f)| |H(f)|
 	\]
-
-	\[
-		|Y(f)| = |X(f)| |H(f)|
-	\]
-
 	\[
 		\vartheta(f) = \varphi(f) + \theta(f)
 	\]
@@ -207,20 +210,14 @@
 	\[
 		R = f_u r \quad \left[ \frac{\text{bit}}{s} \right]
 	\]
-
 	\subsection*{Entropija u kontinuiranom kanalu}
 	$f$ su funkcije gustoće vjerojatnosti.
 
 	\[
 		H(X) = E[-\log f_X(X)] = -\int_{-\infty}^{\infty} f_X(x) \log f_X(x) \, dx
 	\]
-
 	\[
-		f_X(x) = \int_{-\infty}^{\infty} f(x,y) \, dy
-	\]
-
-	\[
-		f_Y(y) = \int_{-\infty}^{\infty} f(x,y) \, dx
+		f_X(x) = \int_{-\infty}^{\infty} f(x,y) \, dy, \quad f_Y(y) = \int_{-\infty}^{\infty} f(x,y) \, dx
 	\]
 
 	\begin{align*}
@@ -232,14 +229,13 @@
 		       & = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log f(x,y) \, dx \, dy
 	\end{align*}
 	\begin{align*}
-		I(X;Y) & = E[-\log f_{Y|X}(Y|X)]                                                                                                \\
-		       & = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_X(x) f_Y(y)} \right) \, dx \, dy
+		I(X;Y) & = E[-\log f_{Y|X}(Y|X)]                                                                                               \\
+		       & = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_X(x) f_Y(y)} \right) \, dx \, dy
 	\end{align*}
 	Prijenos u prisutnosti aditivnog šuma:
 	\[
-		f_{Y|X}(y|x) = f_{Z}(y - x)
+		f_x(y|x) = f_x(z+x|x) = \phi(z)
 	\]
-
 	\[
 		I(X;Y) = H(Y) - H(Y|X) = H(Y) - H(Z)
 	\]
@@ -247,7 +243,7 @@
 	Kapacitet:
 	\begin{align*}
 		C & = \max I(X;Y) = \max \left[ \frac{1}{2} \ln [2\pi e (\sigma_X^2 + \sigma_Z^2)] - \frac{1}{2} \ln (2\pi e \sigma_Z^2) \right] \\
-		  & = \frac{1}{2} \ln \left( 1 + \frac{S}{N} \right) \quad \left[ \frac{\text{bit}}{s} \right]
+		  & = \frac{1}{2} \ln \left( 1 + \frac{S}{N} \right) \quad \left[ \frac{\text{nat}}{s} \right]
 	\end{align*}
 
 	\[
@@ -261,6 +257,21 @@
 		\item $E[X] = 0 \land \exists \sigma_X \to f$ Gaussova, $\quad H(X) = \ln(\sigma_X \sqrt{2\pi e})$
 	\end{itemize}
 
+	\subsection*{Inf. kapacitet AWGN kanala}
+	Za kanal s $f_u=2B$...
+	\[
+		n=2B\longrightarrow B\log_2{\left(1+\frac{S}{N} \right)} \quad \left[bit/s\right]
+	\]
+	\[
+		C=2BD
+	\]
+	$E_b$, srednja energija po svakom bitu...
+	\[
+		\text{uz... } E_b=S/R_b, \quad S=E_bC, \quad \frac{C}{B}=\log_2\left(1 + \frac{E_b}{N_0}\frac{C}{B} \right)
+	\]
+	\[
+		\frac{E_b}{N_0}=\frac{2^{C/B} - 1}{C/B}, \quad \lim_{B\to\infty}\left(\frac{E_b}{N_0}\right)=\log\left(2\right), \quad \lim_{B\to\infty}C=\frac{S}{N_0}\log_2e
+	\]
 	\section*{Ostalo}
 
 	Srednja kvadratna pogreška, $u_{qi}$ kvantizacijske razine:
@@ -269,19 +280,42 @@
 	\]
 
 	\section*{Konverzije}
-
-	U decibele (dB):
-	\[
-		x \to 10 \log_{10} (x)
-	\]
-
+	Pojačanje. U decibele (dB): $x \to 10 \log_{10} (x)$
 	\section*{Jedinice}
 	\[
-		c_k \leftrightarrow \left[ \frac{V}{Hz} \right]
+		c_k \leftrightarrow \left[ \frac{V}{Hz} \right], \quad S_X(f) \leftrightarrow \left[ \frac{W}{Hz} \right]
+	\]
+	\newpage
+	\subsection*{Entropija slučajnog vektora}
+	\begin{align*}
+		H(\mathbf{X}) & =E\left[ -\log\left\{ X_1,...,X_n \right\} \right]                                                            \\
+		              & = -\infintegral...\infintegral f_\mathbf{X}(x_1,...,x_n)\log\left[f_\mathbf{X}(x_1,...,x_n)\right]dx_1...dx_n
+	\end{align*}
+	\subsection*{Inf. kapacitet AWGN kanala}
+	Pri uzorkovanju:
+	\[
+		\mathbf{X}=\left[X_1,X_2,...,X_n\right]
 	\]
 	\[
-		S_X(f) \leftrightarrow \left[ \frac{W}{Hz} \right]
+		\mathbf{Y}=\mathbf{X}+\mathbf{Z}
 	\]
+	\[
+		E[X_k]=0, \quad E[X_k^2]=\sigma_{xk^2}
+	\]
+	\[
+		\phi(\mathbf{z})=\prod_{k=1}^{n}\left[\frac{1}{\sigma_{z_k}\sqrt{2*\pi}}e^{-z_k^2/2\sigma_{z_k}^2} \right]
+	\]
+	\[
+		H(\mathbf{Y}|\mathbf{X})=H(\mathbf{Z})=-\infintegral\phi(\mathbf{z})\log\left[ \phi(\mathbf{z}) \right]=\sum_{k=1}^n\log(\sigma_{z_k}\sqrt{2\pi e})
+	\]
+	\[
+		I(\mathbf{X};\mathbf{Y})=H(\mathbf{Y})-\sum_{k=1}^n\log(\sigma_{z_k}\sqrt{2\pi e})
+	\]
+	Ako su sve varijance jednake...
+	\begin{align*}
+		I_{\text{max}}(\mathbf{X};\mathbf{Y}) & =\frac{n}{2}\log\left(1+\frac{\sigma_x^2}{\sigma_z^2}\right) \quad \left[bit/simbol\right] \\
+		                                      & =\frac{n}{2}\log\left(1+\frac{S}{N}\right)
+	\end{align*}
 
 \end{multicols}
 \end{document}
