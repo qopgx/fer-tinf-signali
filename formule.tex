@@ -25,57 +25,49 @@
 	\[
 		E=I(Ri^2(t))=I(\frac{u^2(t)}{R}), \quad P=\lim_{T\to\infty}\frac{1}{T}\int_{-T_0/2}^{T_0/2}Ri^2(t)dt
 	\]
-
 	\section*{Periodični signali}
 	Fourierov razvoj:
 	\[
 		x(t)=\sum_{k=-\infty}^{\infty}c_ke^{jk\omega_0t}, \text{ gdje } c_k = \frac{1}{T}\int_{-T_0/2}^{T_0/2}x(t)e^{-jk\omega_0t}dt
 	\]
-
 	\subsection*{Snaga}
 	\begin{align*}
 		P & = \lim_{k \to \infty} \left[ \frac{1}{kT_0} \int_{0}^{kT_0} |x(t)|^2 \, dt \right] \\
-		  & = \frac{1}{T_0} \int_{0}^{T_0} |x(t)|^2 \, dt                                      \\
-		  & = \sum_{k=-\infty}^{\infty} |c_k|^2
+		  & = \frac{1}{T_0} \int_{0}^{T_0} |x(t)|^2 \, dt = \sum_{k=-\infty}^{\infty} |c_k|^2
 	\end{align*}
-
 	Za sinusni signal:
 	\[
 		P = \frac{A^2}{2}
 	\]
-
 	Za slijed pravokutnih impulsa:
 	\[
 		P = A^2 \frac{\tau}{T}
 	\]
-
 	\subsection*{Fourierovi parovi}
 	\[
 		x(t) = \sin(\omega_0 t) \leftrightarrow -j \frac{A}{2} [\delta(f - f_0) - \delta(f + f_0)]
 	\]
-
 	\[
 		x(t) = \cos(\omega_0 t) \leftrightarrow \frac{A}{2} [\delta(f - f_0) + \delta(f + f_0)]
 	\]
-
+	Modulacijsko pravilo:
+	\[
+		x(t)cos(2\pi f_0t) \leftrightarrow \frac{1}{2}\left[X(f-f_0)+X(f+f_0)\right]
+	\]
 	\section*{Neperiodični signali}
 	Spektar
 	\[
 		X(f)=\infintegral x(t)e^{-j2\pi ft}dt, \quad x(t)=\infintegral X(f)e^{j2\pi ft}df
 	\]
-
-	$X(f) = |X(f)| e^{j \theta(f)}$, gdje je $|X(f)|$ amplitudni spektar, a $\theta(f)$ fazni spektar.
-
+	\[X(f) = |X(f)| e^{j \theta(f)}\], gdje je \[|X(f)|\] amplitudni spektar, a \[\theta(f)\] fazni spektar.
 	\subsection*{Parsevalov teorem}
 	\[
 		E = \int_{-\infty}^{\infty} |x(t)|^2 \, dt = \int_{-\infty}^{\infty} |X(f)|^2 \, df = \frac{1}{2\pi} \int_{-\infty}^{\infty} |X(\omega)|^2 \, d\omega
 	\]
-
 	\subsection*{Pravokutni impuls}
 	\[
 		P = 0 \quad (\text{beskonačnost}), \quad E = A^2 \tau
 	\]
-
 	\section*{Slučajni signali}
 	Srednja vrijednost
 	\[
@@ -97,7 +89,6 @@
 	\[
 		E[X + Y] = E[X] + E[Y], \quad E[XY] = E[X] E[Y]
 	\]
-
 	\subsection*{Stacionarnost}
 	Uvjeti:
 	\begin{itemize}
@@ -105,7 +96,6 @@
 		\item $\forall t_1, t_2, \quad R_x(t_1, t_2) = R_x(t_1 - t_2) = R_x(\tau)$
 		      \subitem Pri tome: $R_x$ je parna funkcija, $|R_x(\tau)| \leq R_x(0) \geq 0$
 	\end{itemize}
-
 	Srednja snaga:
 	\[
 		P = E[X^2(t)] = R_X(0) = \int_{-\infty}^{\infty} S_X(f) \, df
@@ -113,40 +103,42 @@
 	\[
 		E[X]=0 \longrightarrow P = \operatorname{var}(X) = \sigma_X^2
 	\]
+	\subsection*{Spektralna gustoća snage}
+	\[
+		S_X(f)=\infintegral R_X(\tau)e^{-j2\pi f\tau}d\tau \quad \left[\frac{W}{Hz}\right]
+	\]
+	\[
+		R_X(\tau)=\infintegral S_X(f)e^{j2\pi f\tau}df
+	\]
 	\subsection*{Bijeli šum}
 	$W(t)$ je bijeli šum ako:
 	\[
 		R_W(\tau) = C_1 \delta(\tau) \quad\land\quad C_W(\tau) = C_2 \delta(\tau)
 	\]
-
 	Svojstva:
-	\begin{itemize}
-		\item $\mu_W = 0$
-		\item $R_W(\tau) = \sigma^2 \delta(\tau) = N_0 / 2$
-		\item $S_W(f) = \sigma^2 \int_{-\infty}^{\infty} \delta(t) e^{-j 2\pi f t} \, dt = \sigma^2 = N_0 / 2$
-	\end{itemize}
-
+	\[
+		\mu_W = 0, \quad R_W(\tau) = \sigma^2 \delta(\tau) = N_0 / 2
+	\]
+	\[
+		S_W(f) = \sigma^2 \int_{-\infty}^{\infty} \delta(t) e^{-j 2\pi f t} \, dt = \sigma^2 = N_0 / 2
+	\]
 	Gaussova razdioba:
 	\[
 		f_x(x) = \frac{1}{\sigma_X \sqrt{2\pi}} e^{-(x - \mu_X)^2 / (2 \sigma_X^2)}
 	\]
 	\section*{Prijenos}
-
 	Izlazni signal:
 	\[
 		y(t) = \int_{-\infty}^{\infty} x(\tau) h(t - \tau) \, d\tau = \int_{-\infty}^{\infty} h(\tau) x(t - \tau) \, d\tau
 	\]
-
 	Prijenosna funkcija:
 	\[
 		H(f) = \int_{-\infty}^{\infty} h(t) e^{-j 2\pi f t} \, dt
 	\]
-
 	Amplitudni odziv RC kruga:
 	\[
 		20 \log \frac{|H(f)|}{|H(0)|} = 20 \log |H(f)|
 	\]
-
 	Za idealni filtar:
 	\[
 		|H(f)| =
@@ -155,22 +147,18 @@
 			0, & |f| > f_g
 		\end{cases}
 	\]
-
 	Impulsni odziv i prijenosna funkcija:
 	\[
 		y(t) = x(t) * h(t), \quad Y(f) = X(f) H(f)
 	\]
-
 	Amplitudni odziv je parna funkcija, a fazni neparna:
 	\[
 		|H(-f)| = |H(f)|, \quad \theta(-f) = -\theta(f)
 	\]
-
 	Ako je $X(t)$ stacionarni slučajni proces:
 	\[
 		\mu_Y = \mu_X H(0), \quad S_Y(f) = S_X(f) |H(f)|^2
 	\]
-
 	Ako je ulaz $x(t)$ sa spektrom $X(f) = |X(f)| e^{j \varphi(f)}$:
 	\[
 		Y(f) = |Y(f)| e^{j \vartheta(f)}, \quad |Y(f)| = |X(f)| |H(f)|
@@ -178,48 +166,39 @@
 	\[
 		\vartheta(f) = \varphi(f) + \theta(f)
 	\]
-
 	Amplitudni odziv RC kruga:
 	\[
 		|H(f)| = \left| \frac{U_{\text{izlaz}}(f)}{U_{\text{ulaz}}(f)} \right| = \frac{1}{\sqrt{1 + (2\pi f RC)^2}}
 	\]
-
 	\section*{Uzorkovanje i kvantizacija}
-
 	Frekvencija uzorkovanja u pomaknutom pojasu:
 	\[
 		f_u = 2 \frac{B + B_0}{M + 1}, \quad M_m = \left\lfloor \frac{B_0}{B} + 1 \right\rfloor
 	\]
-
 	Varijanca kvantizacijskog šuma (srednja snaga):
 	\[
 		\operatorname{var}(Q) = \sigma_Q^2 = \frac{\Delta^2}{12} = \frac{1}{3} m_{\max}^2 2^{-2r}, \quad \Delta = \frac{2 m_{\max}}{L}
 	\]
-
 	Omjer srednje snage signala i snage kvantizacijskog šuma:
 	\[
 		\frac{S}{N} = \frac{S}{\sigma_Q^2} = \left( \frac{3S}{m_{\max}^2} \right) 2^{2r}
 	\]
-
 	U decibelima (samo za sinusni signal):
 	\[
 		\left( \frac{S}{N_q} \right)_{dB} = 1.76 + 6.02 r
 	\]
-
 	Brzina prijenosa:
 	\[
 		R = f_u r \quad \left[ \frac{\text{bit}}{s} \right]
 	\]
 	\subsection*{Entropija u kontinuiranom kanalu}
 	$f$ su funkcije gustoće vjerojatnosti.
-
 	\[
 		H(X) = E[-\log f_X(X)] = -\int_{-\infty}^{\infty} f_X(x) \log f_X(x) \, dx
 	\]
 	\[
 		f_X(x) = \int_{-\infty}^{\infty} f(x,y) \, dy, \quad f_Y(y) = \int_{-\infty}^{\infty} f(x,y) \, dx
 	\]
-
 	\begin{align*}
 		H(X|Y) & = E[-\log f_{X|Y}(X|Y)]                                                                                         \\
 		       & = -\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) \log \left( \frac{f(x,y)}{f_Y(y)} \right) \, dx \, dy
@@ -239,17 +218,14 @@
 	\[
 		I(X;Y) = H(Y) - H(Y|X) = H(Y) - H(Z)
 	\]
-
 	Kapacitet:
 	\begin{align*}
 		C & = \max I(X;Y) = \max \left[ \frac{1}{2} \ln [2\pi e (\sigma_X^2 + \sigma_Z^2)] - \frac{1}{2} \ln (2\pi e \sigma_Z^2) \right] \\
 		  & = \frac{1}{2} \ln \left( 1 + \frac{S}{N} \right) \quad \left[ \frac{\text{nat}}{s} \right]
 	\end{align*}
-
 	\[
 		C = \frac{1}{2} \log_2 \left( 1 + \frac{S}{N} \right) \quad [\text{bit/simbol}]
 	\]
-
 	\subsection*{Maksimizacija entropije u kontinuiranom kanalu}
 	\begin{itemize}
 		\item $x \in [a,b] \to f(x) = \frac{1}{b-a}$, $\quad H(X) = \ln(b-a) \quad [\text{nat/sym}]$
@@ -260,10 +236,7 @@
 	\subsection*{Inf. kapacitet AWGN kanala}
 	Za kanal s $f_u=2B$...
 	\[
-		n=2B\longrightarrow B\log_2{\left(1+\frac{S}{N} \right)} \quad \left[bit/s\right]
-	\]
-	\[
-		C=2BD
+		n=2B\longrightarrow B\log_2{\left(1+\frac{S}{N} \right)} \quad \left[bit/s\right], \quad C=2BD
 	\]
 	$E_b$, srednja energija po svakom bitu...
 	\[
@@ -272,13 +245,6 @@
 	\[
 		\frac{E_b}{N_0}=\frac{2^{C/B} - 1}{C/B}, \quad \lim_{B\to\infty}\left(\frac{E_b}{N_0}\right)=\log\left(2\right), \quad \lim_{B\to\infty}C=\frac{S}{N_0}\log_2e
 	\]
-	\section*{Ostalo}
-
-	Srednja kvadratna pogreška, $u_{qi}$ kvantizacijske razine:
-	\[
-		N_q^2 = \sum_{u_{qi}} \int_{u_{qi} - \Delta/2}^{u_{qi} + \Delta/2} (u - u_{qi})^2 f(u) \, du \quad [V^2]
-	\]
-
 	\section*{Konverzije}
 	Pojačanje. U decibele (dB): $x \to 10 \log_{10} (x)$
 	\section*{Jedinice}
@@ -286,6 +252,19 @@
 		c_k \leftrightarrow \left[ \frac{V}{Hz} \right], \quad S_X(f) \leftrightarrow \left[ \frac{W}{Hz} \right]
 	\]
 	\newpage
+	\section*{Ostalo}
+	Srednja kvadratna pogreška, $u_{qi}$ kvantizacijske razine:
+	\[
+		N_q^2 = \sum_{u_{qi}} \int_{u_{qi} - \Delta/2}^{u_{qi} + \Delta/2} (u - u_{qi})^2 f(u) \, du \quad [V^2]
+	\]
+	Riemann-Lebesgue lema na realnom / kompleksnom skupu. $x$ je $L^1$ ako:
+	\[
+		\int_{\mathbb{R}^n} \lvert x(t)\rvert dt < \infty
+	\]
+	Za fourierov transformat $X(f)$ tada vrijedi:
+	\[
+		\lvert X(f) \rvert \to 0 \text{ kada } \lvert f \rvert \to 0
+	\]
 	\subsection*{Entropija slučajnog vektora}
 	\begin{align*}
 		H(\mathbf{X}) & =E\left[ -\log\left\{ X_1,...,X_n \right\} \right]                                                            \\
