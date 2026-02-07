@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \usepackage{xcolor}
 \usepackage{multicol}
+\usepackage{graphicx}
 \setlength{\columnsep}{50pt}
 \usepackage{geometry}
 \geometry{
@@ -35,27 +36,29 @@
 		P & = \lim_{k \to \infty} \left[ \frac{1}{kT_0} \int_{0}^{kT_0} |x(t)|^2 \, dt \right] \\
 		  & = \frac{1}{T_0} \int_{0}^{T_0} |x(t)|^2 \, dt = \sum_{k=-\infty}^{\infty} |c_k|^2
 	\end{align*}
-	Za sinusni signal:
 	\[
-		P = \frac{A^2}{2}
+		\text{Sinusni signal: }\quad P = \frac{A^2}{2}
 	\]
-	Za slijed pravokutnih impulsa:
 	\[
-		P = A^2 \frac{\tau}{T}
+		\text{Slijed pravokutnih impulsa: } \quad P = A^2 \frac{\tau}{T}
 	\]
 	\subsection*{Fourierovi parovi}
 	\[
-		x(t) = \sin(\omega_0 t) \leftrightarrow -j \frac{A}{2} [\delta(f - f_0) - \delta(f + f_0)]
+		x(t) = \cos(\omega_0 t) \leftrightarrow \frac{A}{2} [\delta(f - f_0) + \delta(f + f_0)]
 	\]
 	\[
-		x(t) = \cos(\omega_0 t) \leftrightarrow \frac{A}{2} [\delta(f - f_0) + \delta(f + f_0)]
+		x(t) = \sin(\omega_0 t) \leftrightarrow -j \frac{A}{2} [\delta(f - f_0) - \delta(f + f_0)]
 	\]
 	Modulacijsko pravilo:
 	\[
 		x(t)cos(2\pi f_0t) \leftrightarrow \frac{1}{2}\left[X(f-f_0)+X(f+f_0)\right]
 	\]
 	\section*{Neperiodični signali}
-	Spektar
+	\subsection*{Energija i snaga}
+	\[
+		\text{Energija }\quad \lim_{T\to\infty}\int_{-T}^{T}\lvert x(t)\rvert^2dt=\infintegral\lvert x(t)\rvert^2dt, \quad P=\frac{E}{2T}
+	\]
+	\subsection*{Spektar}
 	\[
 		X(f)=\infintegral x(t)e^{-j2\pi ft}dt, \quad x(t)=\infintegral X(f)e^{j2\pi ft}df
 	\]
@@ -253,9 +256,9 @@
 	\]
 	\newpage
 	\section*{Ostalo}
-	Srednja kvadratna pogreška, $u_{qi}$ kvantizacijske razine:
+	Neka svojstva operatora Fourierove transformacije:
 	\[
-		N_q^2 = \sum_{u_{qi}} \int_{u_{qi} - \Delta/2}^{u_{qi} + \Delta/2} (u - u_{qi})^2 f(u) \, du \quad [V^2]
+		\text{Linearnost } \quad \mathcal{F}\{ax +by\}=a\mathcal{F}\{x\}+b\mathcal{F}\{y\}
 	\]
 	Riemann-Lebesgue lema na realnom / kompleksnom skupu. $x$ je $L^1$ ako:
 	\[
@@ -264,6 +267,10 @@
 	Za fourierov transformat $X(f)$ tada vrijedi:
 	\[
 		\lvert X(f) \rvert \to 0 \text{ kada } \lvert f \rvert \to 0
+	\]
+	Srednja kvadratna pogreška, $u_{qi}$ kvantizacijske razine:
+	\[
+		N_q^2 = \sum_{u_{qi}} \int_{u_{qi} - \Delta/2}^{u_{qi} + \Delta/2} (u - u_{qi})^2 f(u) \, du \quad [V^2]
 	\]
 	\subsection*{Entropija slučajnog vektora}
 	\begin{align*}
@@ -295,7 +302,10 @@
 		I_{\text{max}}(\mathbf{X};\mathbf{Y}) & =\frac{n}{2}\log\left(1+\frac{\sigma_x^2}{\sigma_z^2}\right) \quad \left[bit/simbol\right] \\
 		                                      & =\frac{n}{2}\log\left(1+\frac{S}{N}\right)
 	\end{align*}
-
+	\subsection*{Slike}
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{assets/B.png}
+	\end{center}
 \end{multicols}
 \end{document}
 
