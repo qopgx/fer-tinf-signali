@@ -14,7 +14,7 @@
 \usepackage{titling}
 \setlength{\droptitle}{-7em}
 \posttitle{\par\end{center}\vspace{-5em}}
-\title{TINF Signali formule}
+\title{TINF Signali [+ dodatno kodiranje] formule}
 \author{}
 \date{}
 
@@ -24,7 +24,7 @@
 \maketitle
 \begin{multicols}{2}
 	\[
-		E=I(Ri^2(t))=I(\frac{u^2(t)}{R}), \quad P=\lim_{T\to\infty}\frac{1}{T}\int_{-T_0/2}^{T_0/2}Ri^2(t)dt
+		E=\infintegral Ri^2(t)dt=\infintegral\frac{u^2(t)}{R}dt, \quad P=\lim_{T\to\infty}\frac{1}{T}\int_{-T_0/2}^{T_0/2}Ri^2(t)dt
 	\]
 	\section*{Periodični signali}
 	Fourierov razvoj:
@@ -276,20 +276,7 @@
 	\[
 		M \leq \frac{\lvert F_q \rvert^n}{\int_{i=0}^{t} \binom{n}{i} (\lvert F_q \rvert - 1)^i}
 	\]
-	Sistematsko kodiranje / dekodiranje:
-	\begin{align*}
-		\text{Kodiranje } c(x)                 & = d(x)*x^r + [d(x)*x^r \mod{g(x)}] \\
-		\text{Prijenos } y(x)                  & = c(x)+e(x)                        \\
-		\text{Dekodiranje } S\left[e(x)\right] & =y(x)*x^r\pmod{g(x)}               \\
-		\rightarrow y'(x)                      & =y(x)-e(x)                         \\
-		\rightarrow d(x)                       & =\frac{y'(x)}{x^r}
-	\end{align*}
-	Nesistematsko:
-	\begin{align*}
-		 & \text{Kodiranje } c(x)=d(x)*g(x)                                                                            \\
-		 & \text{Prijenos } y(x)=c(x)+e(x)                                                                             \\
-		 & \text{Dekodiranje } \nexists e(x) \rightarrow \frac{y(x)}{g(x)}, \text { otherwise } \frac{y(x)-e(x)}{g(x)}
-	\end{align*}
+
 	\subsection*{Entropija slučajnog vektora}
 	\begin{align*}
 		H(\mathbf{X}) & =E\left[ -\log\left\{ X_1,...,X_n \right\} \right]                                                            \\
@@ -325,10 +312,41 @@
 		\text{Znano } B \text{ tražimo } A:\\
 		P(A|B)=\frac{P(A\cap B)}{P(B)}
 	\]
+	\subsection*{Ciklični kod}
+	Sistematsko kodiranje / dekodiranje:
+	\begin{align*}
+		\text{Kodiranje } c(x)                 & = d(x)*x^r + [d(x)*x^r \mod{g(x)}] \\
+		\text{Prijenos } y(x)                  & = c(x)+e(x)                        \\
+		\text{Dekodiranje } S\left[e(x)\right] & =y(x)*x^r\pmod{g(x)}               \\
+		\rightarrow y'(x)                      & =y(x)-e(x)                         \\
+		\rightarrow d(x)                       & =\frac{y'(x)}{x^r}
+	\end{align*}
+	Nesistematsko:
+	\begin{align*}
+		 & \text{Kodiranje } c(x)=d(x)*g(x)                                                                            \\
+		 & \text{Prijenos } y(x)=c(x)+e(x)                                                                             \\
+		 & \text{Dekodiranje } \nexists e(x) \rightarrow \frac{y(x)}{g(x)}, \text { otherwise } \frac{y(x)-e(x)}{g(x)}
+	\end{align*}
+	\subsection*{Konvolucijsko kodiranje}
+
+	\begin{itemize}
+		\item $(n,k,L) \to n$ - izlaz kodera; $k$ - ulaz kodera; $L$ - grani\v{c}na duljina kodera (ra\v{c}una se $L = m +1$, gdje je $m$ br. memorijskih stanja posma\v{c}nog registra)
+		\item Generiraju\'{c}a matrica $G$ ima $n$ stupaca; prvi redak izgleda ovako: $[G_0 \, G_1 \, \dots \, G_l \, 0 \dots 0]$, nula ima po potrebi da se nadopune stupci, svaki sljede\'{c}i redak isti je kao prethodni, ali zarotiran udesno za 1, postupak se ponavlja sve dok $G_l$ ne do\v{d}e do kraja matrice, $G_i$ je podmatrica dimenzija $k \times n$, a sastoji se od vektor-redaka oblika $\begin{bmatrix} h_{i,l}^{(1)} & h_{i,l}^{(2)} & \dots & h_{i,l}^{(n)} \end{bmatrix}$, $i \in \{1,2,\dots,k\}$, tj. $G_i$ ima redaka koliko je ulaza u koder te su u $i$-tom retku nanizani $l$-ti bitovi prema rastu\'{c}im izlazima funkcijskih generatora $h_i$; kodiranje: mno\v{z}i se poruka s $G$
+		\item Prijenosna funkcija $T(D) = \frac{X_e}{X_a}$
+	\end{itemize}
+
+	\subsection*{Paritet - vertikalna i horizontalna provjera}
+
+	\begin{itemize}
+		\item $R = R_1 \oplus \dots \oplus R_m = C_1 \oplus \dots \oplus C_k$
+		\item $R = 1 \implies$ dogodila se gre\v{s}ka, sje\v{c}i\v{s}te retka i stupca
+	\end{itemize}
+
 	\subsection*{Slike}
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{assets/B.png}
 	\end{center}
+
 \end{multicols}
 \end{document}
 
