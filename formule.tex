@@ -272,6 +272,24 @@
 	\[
 		N_q^2 = \sum_{u_{qi}} \int_{u_{qi} - \Delta/2}^{u_{qi} + \Delta/2} (u - u_{qi})^2 f(u) \, du \quad [V^2]
 	\]
+	Hamming bound generalno:
+	\[
+		M \leq \frac{\lvert F_q \rvert^n}{\int_{i=0}^{t} \binom{n}{i} (\lvert F_q \rvert - 1)^i}
+	\]
+	Sistematsko kodiranje / dekodiranje:
+	\begin{align*}
+		\text{Kodiranje } c(x)                 & = d(x)*x^r + [d(x)*x^r \mod{g(x)}] \\
+		\text{Prijenos } y(x)                  & = c(x)+e(x)                        \\
+		\text{Dekodiranje } S\left[e(x)\right] & =y(x)*x^r\pmod{g(x)}               \\
+		\rightarrow y'(x)                      & =y(x)-e(x)                         \\
+		\rightarrow d(x)                       & =\frac{y'(x)}{x^r}
+	\end{align*}
+	Nesistematsko:
+	\begin{align*}
+		 & \text{Kodiranje } c(x)=d(x)*g(x)                                                                            \\
+		 & \text{Prijenos } y(x)=c(x)+e(x)                                                                             \\
+		 & \text{Dekodiranje } \nexists e(x) \rightarrow \frac{y(x)}{g(x)}, \text { otherwise } \frac{y(x)-e(x)}{g(x)}
+	\end{align*}
 	\subsection*{Entropija slučajnog vektora}
 	\begin{align*}
 		H(\mathbf{X}) & =E\left[ -\log\left\{ X_1,...,X_n \right\} \right]                                                            \\
@@ -302,6 +320,11 @@
 		I_{\text{max}}(\mathbf{X};\mathbf{Y}) & =\frac{n}{2}\log\left(1+\frac{\sigma_x^2}{\sigma_z^2}\right) \quad \left[bit/simbol\right] \\
 		                                      & =\frac{n}{2}\log\left(1+\frac{S}{N}\right)
 	\end{align*}
+	\subsection*{Vjerojatnost}
+	\[
+		\text{Znano } B \text{ tražimo } A:\\
+		P(A|B)=\frac{P(A\cap B)}{P(B)}
+	\]
 	\subsection*{Slike}
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{assets/B.png}
